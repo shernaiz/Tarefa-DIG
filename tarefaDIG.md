@@ -2,21 +2,33 @@
 
 **1-Realiza unha consulta `dig danielcastelao.org` e identifica cada parte da resposta (IN, CNAME, A, QUERY SECTION, AUTHORITY SECTION, etc)**
     Ao lanzar o comando anterior, como resposta imos ver un montón de información.
+
     -*IN* indicarnos que se trara dun rexistro de internet.
+
     -*A* esta letra indicaranos o tipo de rexistro, e indica que contén a dirección IP que está asignada ao domino que indicamos ao lanzar o coamndo.
+
     - *QUERY SECTION* esta refírese a sección de pregunta, mostrará a consulta que se realizou indicando o dominio e a clase da consulta, neste caso _IN_.
+
     - *AUTHORITY SECTION* esta sección indicara os servidores de nomes de autoridade para o dominio indicado. Estos son os servidores encargados de responder as consultas sin embarno na consulta que lanzamos non aparece esta sección.
+
     - *QUERY TIME* aquí mostrarase o tempo que tardou a consulta en realizarse, neste caso foron _163 msec_.
+
     - *SERVER* indica o servidor DNS empregado para a consulta, neste caso foi o _127.0.0.53_.
+
     Ademáis nesta seccióin encontrarase máis información como *WHEN*, que indicara a fecha e hora na que se realizou a consulta e *MSG SIZE* que indica o tamaño da resposta recivida.
 
 **2-Realiza consultas dos seguintes nomes e identifica as diferencias:**
     **`moodle.danielcastelao.org`**
     **`www.danielcastelao.org`**
+
     Ao realizar as duas consultas podemos observar varias diferencias.
+    
     -> A primeira diferencia que vemos e na sección da cabeceira, na seccion de *STATUS* podemos ver que na consulta de moodle responde *NXDOMAIN* esto implica que o dominio ou non existe ou non o pode atopar no DNS.
+
     -> Na misma sección na parte de *ANSWER* podemos comprobar que tamén a consulta de moodle dinos que ten 0 respostas.
+
     -> Na sección de *ANSWER* podemos comprobar tamén que na consulta de moodle non nos aparece ningunha dirección IP.
+    
     -> Na consulta de moodle sin embargo si que nos aparece a sección *AUTHORITY SECTION* onde nos aparece _danielcastelao.org_ sin embargo na coutra consulta non nos mostra esta sección.
 
 **3-Averigua o nome e IP dos servidores de DNS autoritativos de `www.danielcatelao.org`, por qué soen ser 2 servidores autoritativos?**
@@ -28,12 +40,16 @@
 
 **4-Realiza as consultas de nomes inversas: 130.206.164.68 e de outras dúas IPs que se che ocorran**
     Para facer as consultas de nomes á inversa teremos que escruibir o comando `dig` coma antes pero empregaremos o modificador `-x`, quedando o comando tal que así `dig -x 130.206.164.68`.
+
     Consultas realizadas:
+
         -> `104.18.5.124`
+
         -> `2.22.221.49`
 
 **5-A que servidor DNS estás consultando? Cómo podes cambiar sen tocar os ficheiros de configuración do sistema?**
     Para saber o servidor ao que estamos consultando poderíamos velo en calquera das consultas anteriores, na última sección móstranos o servidor ao que estamos consultando, de todas formas podemos volver a lanzar o comando por exemplo a google para observar esto. 
+
     O servidor ao que estamos consultando é o  `127.0.0.53`.
     Esto é unha dirección de loopback xa que realizamos a consulta desde unha máquina virtual, en caso de facelo desde a máquina original a dirección do servidor DNS será o `8.8.8.8`.
 
