@@ -28,14 +28,18 @@
     -> Na misma sección na parte de *ANSWER* podemos comprobar que tamén a consulta de moodle dinos que ten 0 respostas.
 
     -> Na sección de *ANSWER* podemos comprobar tamén que na consulta de moodle non nos aparece ningunha dirección IP.
-    
+
     -> Na consulta de moodle sin embargo si que nos aparece a sección *AUTHORITY SECTION* onde nos aparece _danielcastelao.org_ sin embargo na coutra consulta non nos mostra esta sección.
 
 **3-Averigua o nome e IP dos servidores de DNS autoritativos de `www.danielcatelao.org`, por qué soen ser 2 servidores autoritativos?**
     Como ao lanzar dig directamente ca dirección non nos aparece a sección de *AUTHORITY SECTION* teremos que lanzar a consulta da seguinte forma _dig NS www.danielcastelao.org_. 
+
     A resposta que obteremos serán dúas direccións `ns1.hover.com` e `dnsmaster.hover.com`. Os servidores autoritativos sempre serán dous ou mais para tratar de garantizar a seguridade, redundancia e a dispoñibilidade, isto garantiza que se un falla, o outro pode dar servicio, ademáis que se estos servidores se están localizados en diferentes puntos xeográficos facilitarán a dispoñibilidade do servicio.
+
     Para conocer a dirección destos servidores podemos lanzar o comando `dig` e o nome dos servidores.
+
     -> `ns1.hover.com` a dirección IP é `216.40.47`
+
     -> `dnsmaster.hover.com` a dirección IP é `216.40.34.41`
 
 **4-Realiza as consultas de nomes inversas: 130.206.164.68 e de outras dúas IPs que se che ocorran**
@@ -53,9 +57,13 @@
     O servidor ao que estamos consultando é o  `127.0.0.53`.
     Esto é unha dirección de loopback xa que realizamos a consulta desde unha máquina virtual, en caso de facelo desde a máquina original a dirección do servidor DNS será o `8.8.8.8`.
 
+    Para cambiar o servidor ao que estamos consultando teremos que facer a consulta pero indicando a que servidor queremos acceder, por exemplo `dig @8.8.8.8 www.danielcastelao.org`.
+
 **6-Obtén o rexistro SOA (Start of Authority) do dominio `moodle.danielcastelao.org` preguntándolle ó servidor DNS de google e logo preguntándollo directamente ó servidor primario do dominio danielcastelao.org**
     Para obter o rexistro SOA do dominio moodle teremos que lanzar o comando dig acompañado das letras SOA da seguinte forma `dig moodle.danielcastelao.org SOA` e nos mostrará unha información similar as anteriores consultas.
-    Para facer a consulta ó servidor DNS de google teremos que escribir o comando de antes pero indicándolle o DNS de google da seguinte forma `dig @8.8.8.8 moodle.danielcastelao.org`.
+
+    Para facer a consulta ó servidor DNS de google teremos que escribir o comando de antes pero indicándolle o DNS de google da seguinte forma dig @8.8.8.8 moodle.danielcastelao.org.
+
     Para facelo ao servidor primario do dominio teremos que facer teríamos que lanzar o comando dig normal ca dirección de `danielcastelao.com` o que nos dirá que o servidor primario e o `ns1.hover.com`. Unha vez feito esto termos que lanzar o comando de antes pero co novo nome da seguinte forma `dig @ns1.hover.com moodle.danielcastelao.org SOA`.
     
 **7-Consulta a IP de www.elpais.com. Cánto tempo queda almacenado o rexistro de recurso no DNS local? Se preguntas o DNS local por este recurso, que observas no TTL do rexistro**
